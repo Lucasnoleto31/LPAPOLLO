@@ -196,15 +196,41 @@
       overflow: hidden;
     }
 
+    /* Imagem de fundo */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('hero.png');
+      background-size: cover;
+      background-position: center right;
+      background-repeat: no-repeat;
+      z-index: 0;
+    }
+
+    /* Overlay para legibilidade */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(6,6,6,0.92) 0%,
+        rgba(6,6,6,0.75) 45%,
+        rgba(6,6,6,0.35) 100%
+      );
+    }
+
+    .hero > .container { position: relative; z-index: 1; }
+
     .hero::before {
       content: '';
       position: absolute;
-      top: -200px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 800px;
-      height: 800px;
-      background: radial-gradient(circle, rgba(0,255,127,0.07) 0%, transparent 70%);
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 200px;
+      background: linear-gradient(to top, var(--bg), transparent);
+      z-index: 1;
       pointer-events: none;
     }
 
@@ -1230,6 +1256,7 @@
 
   <!-- HERO -->
   <section class="hero">
+    <div class="hero-bg"></div>
     <div class="container">
       <div class="hero-grid">
 
@@ -2146,7 +2173,7 @@
       fetch(WEBHOOK + '?' + params.toString(), { method: 'GET', mode: 'no-cors' }).catch(() => {});
 
       // Redireciona para o grupo
-      window.open('https://chat.whatsapp.com/IKyrGBPFYE6JwbHNX3KeMV', '_blank');
+      window.open('https://chat.whatsapp.com/IzO5KNxW0Eh4Nx60c2QT8u', '_blank');
       closeModal();
       form.reset();
     }
