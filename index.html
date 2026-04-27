@@ -3,12 +3,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Apollo | O Robô Que Opera o Mini Índice Por Você</title>
-  <meta name="description" content="Robô automatizado para mini índice na B3. Opere 100% no automático, sem emoção, sem precisar ficar na frente do computador." />
+  <meta name="theme-color" content="#060606" />
+
+  <title>Apollo | Robô Automatizado para o Mini Índice da B3</title>
+  <meta name="description" content="Acompanhe o Apollo operando o mini índice da B3 em tempo real. Entre na comunidade e veja o robô em ação antes de tomar qualquer decisão." />
+
+  <link rel="canonical" href="https://www.quantsrobos.com/" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/favicon.svg" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.quantsrobos.com/" />
+  <meta property="og:site_name" content="Apollo · QuantsRobos" />
+  <meta property="og:title" content="Apollo | Robô Automatizado para o Mini Índice" />
+  <meta property="og:description" content="Acompanhe o Apollo operando em tempo real antes de tomar qualquer decisão. Entre na comunidade." />
+  <meta property="og:image" content="https://www.quantsrobos.com/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="pt_BR" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Apollo | Robô Automatizado para o Mini Índice" />
+  <meta name="twitter:description" content="Acompanhe o Apollo operando em tempo real antes de tomar qualquer decisão." />
+  <meta name="twitter:image" content="https://www.quantsrobos.com/og-image.jpg" />
+
+  <link rel="preload" as="image" href="/hero.webp" media="(min-width: 901px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="/hero-mobile.webp" media="(max-width: 900px)" fetchpriority="high" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    /* TODO: trocar YOUR_META_PIXEL_ID pelo Pixel ID real do Gerenciador de Eventos */
+    fbq('init', 'YOUR_META_PIXEL_ID');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=YOUR_META_PIXEL_ID&ev=PageView&noscript=1"/></noscript>
+
+  <!-- Google tag (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    /* TODO: trocar G-XXXXXXXXXX pelo Measurement ID real do GA4 */
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -194,10 +245,14 @@
       padding-top: 80px;
       position: relative;
       overflow: hidden;
-      background-image: url('hero.png');
+      background-image: url('hero.webp');
       background-size: cover;
       background-position: center right;
       background-repeat: no-repeat;
+    }
+
+    @media (max-width: 900px) {
+      .hero { background-image: url('hero-mobile.webp'); }
     }
 
     /* Overlay escuro sobre a imagem */
@@ -394,9 +449,17 @@
     .float-value { font-size: 14px; font-weight: 700; color: var(--green); }
 
     @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 50px; }
-      .hero-visual { display: none; }
-      .hero { min-height: auto; padding: 120px 0 80px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero { min-height: auto; padding: 110px 0 60px; }
+
+      .hero-visual { order: 2; margin-top: 8px; }
+      .chart-card { padding: 22px; max-width: 100%; }
+      .chart-value { font-size: 32px; }
+      .chart-svg { height: 60px; }
+      .chart-stats { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+      .chart-stat-value { font-size: 13px; }
+      .chart-stat-label { font-size: 9px; }
+      .float-card { display: none; }
     }
 
     /* Proof bar */
@@ -1254,21 +1317,15 @@
       <div class="hero-grid">
 
         <div class="hero-content">
-          <div class="hero-badge">
-            <span class="hero-badge-dot"></span>
-            Comunidade gratuita · Acesso imediato
-          </div>
-
           <h1>
-            Chega de perder dinheiro<br/>
-            operando no emocional.<br/>
+            Chega de perder dinheiro operando no emocional.
             <span class="highlight">Existe um jeito melhor.</span>
           </h1>
 
           <p class="hero-sub">
-            Entre de graça na nossa comunidade e acompanhe o Apollo operando o mini índice B3 em tempo real,
-            antes de investir um centavo. Veja por conta própria como membros chegam a
-            <strong style="color:#fff">R$6.500 por mês em média</strong> no automático, e só decida quando estiver convicto.
+            Entre na nossa comunidade e acompanhe o Apollo operando o mini índice da B3 em tempo real,
+            antes de tomar qualquer decisão. Veja por conta própria como membros já reportaram resultados
+            entre <strong style="color:#fff">R$5.000 e R$12.000 por mês</strong> com banca de R$25.000 — e só decida quando estiver convicto.
           </p>
 
           <div class="hero-cta-group">
@@ -1300,10 +1357,10 @@
             <div class="chart-card">
               <div class="chart-header">
                 <span class="chart-title">Apollo · WINM · Performance</span>
-                <span class="chart-badge">+38% no mês</span>
+                <span class="chart-badge">Operando ao vivo</span>
               </div>
-              <div class="chart-value">R$8.400</div>
-              <div class="chart-sub">Resultado médio mensal · Capital R$25.000</div>
+              <div class="chart-value">R$5k–R$12k</div>
+              <div class="chart-sub">Faixa de resultado mensal · Banca de R$25.000</div>
 
               <svg class="chart-svg" viewBox="0 0 380 80" preserveAspectRatio="none">
                 <defs>
@@ -1370,8 +1427,8 @@
         </div>
         <div class="proof-item">
           <div>
-            <div class="proof-number">R$6.500</div>
-            <div class="proof-label">resultado médio no mês</div>
+            <div class="proof-number">R$5–12k</div>
+            <div class="proof-label">faixa de resultado mensal</div>
           </div>
         </div>
         <div class="proof-item">
@@ -1407,7 +1464,7 @@
         </div>
         <div class="pain-card fade-up fade-up-delay-2">
           <h4>O mercado operou hoje. Você não estava lá</h4>
-          <p>Abriu, movimentou, fechou. R$6.500 potenciais passaram pelo mini índice enquanto você estava numa reunião. Isso acontece todos os dias úteis do ano.</p>
+          <p>Abriu, movimentou, fechou. Toda hora aparece movimento bom no mini índice enquanto você está numa reunião. Isso acontece todos os dias úteis do ano.</p>
         </div>
         <div class="pain-card fade-up fade-up-delay-3">
           <h4>Você quer construir renda sem largar o que tem agora</h4>
@@ -1623,21 +1680,21 @@
           <span class="section-label">Números reais</span>
           <h2>O robô operou hoje. Você estava onde queria estar.</h2>
           <p>
-            Membros com R$25.000 em conta chegam a uma média de <strong style="color:#fff">R$6.500 por mês</strong>, sem operar manualmente, sem acompanhar o mercado, sem tomar uma única decisão de compra ou venda. O Apollo fez tudo.
+            Membros com R$25.000 em conta já reportaram resultados na faixa de <strong style="color:#fff">R$5.000 a R$12.000 por mês</strong>, sem operar manualmente, sem acompanhar o mercado, sem tomar uma única decisão de compra ou venda. O Apollo fez tudo.
           </p>
           <p class="results-disclaimer">
-            Aviso importante: resultados passados não garantem resultados futuros. Renda variável envolve riscos. Os valores apresentados refletem resultados históricos de membros da comunidade com capital de R$25.000 e configurações padrão do Apollo.
+            Aviso importante: resultados passados não garantem resultados futuros. Renda variável envolve riscos. Os valores apresentados refletem resultados históricos de membros da comunidade com banca de R$25.000 e configurações padrão do Apollo. Resultados podem variar conforme condições de mercado.
           </p>
         </div>
 
         <div class="metrics-grid fade-up fade-up-delay-2">
           <div class="metric-card big">
-            <div class="metric-label">Resultado médio mensal</div>
+            <div class="metric-label">Faixa de resultado mensal</div>
             <div class="metric-value">R$5k a R$12k</div>
-            <div class="metric-desc">Com capital de R$25.000 na conta</div>
+            <div class="metric-desc">Reportada por membros com banca de R$25.000</div>
           </div>
           <div class="metric-card">
-            <div class="metric-label">Capital recomendado</div>
+            <div class="metric-label">Banca recomendada</div>
             <div class="metric-value">R$25k</div>
             <div class="metric-desc">Para operar com o Apollo</div>
           </div>
@@ -1669,7 +1726,7 @@
       <p class="sub">Não é promessa de guru. É a estratégia que o próprio criador usa todo dia.</p>
 
       <div class="founder-card fade-up">
-        <img src="fabricio.jpeg" alt="Fabrício Gonçalves" class="founder-photo" />
+        <img src="fabricio.jpeg" alt="Fabrício Gonçalves" class="founder-photo" loading="lazy" decoding="async" width="160" height="200" />
 
         <div>
           <h3 class="founder-name">Fabrício Gonçalves</h3>
@@ -1759,14 +1816,14 @@
       <div class="prints-section fade-up">
         <p class="prints-title">Resultados dos membros da comunidade</p>
         <div class="prints-grid">
-          <img src="prints/print-1.jpeg" alt="Resultado membro" class="print-img" onclick="openLightbox(this.src)" />
-          <img src="prints/print-2.jpeg" alt="Resultado membro" class="print-img" onclick="openLightbox(this.src)" />
-          <img src="prints/print-3.jpeg" alt="Resultado membro" class="print-img" onclick="openLightbox(this.src)" />
-          <img src="prints/print-4.jpeg" alt="Resultado membro" class="print-img" onclick="openLightbox(this.src)" />
-          <img src="prints/print-5.jpeg" alt="Resultado membro" class="print-img" onclick="openLightbox(this.src)" />
-          <img src="prints/print-6.jpeg" alt="Resultado membro" class="print-img" onclick="openLightbox(this.src)" />
-          <img src="prints/print-7.jpeg" alt="Resultado membro" class="print-img" onclick="openLightbox(this.src)" />
-          <img src="prints/print-8.jpeg" alt="Resultado membro" class="print-img" onclick="openLightbox(this.src)" />
+          <img src="prints/print-1.jpeg" alt="Resultado membro" class="print-img" loading="lazy" decoding="async" width="240" height="427" onclick="openLightbox(this.src)" />
+          <img src="prints/print-2.jpeg" alt="Resultado membro" class="print-img" loading="lazy" decoding="async" width="240" height="427" onclick="openLightbox(this.src)" />
+          <img src="prints/print-3.jpeg" alt="Resultado membro" class="print-img" loading="lazy" decoding="async" width="240" height="427" onclick="openLightbox(this.src)" />
+          <img src="prints/print-4.jpeg" alt="Resultado membro" class="print-img" loading="lazy" decoding="async" width="240" height="427" onclick="openLightbox(this.src)" />
+          <img src="prints/print-5.jpeg" alt="Resultado membro" class="print-img" loading="lazy" decoding="async" width="240" height="427" onclick="openLightbox(this.src)" />
+          <img src="prints/print-6.jpeg" alt="Resultado membro" class="print-img" loading="lazy" decoding="async" width="240" height="427" onclick="openLightbox(this.src)" />
+          <img src="prints/print-7.jpeg" alt="Resultado membro" class="print-img" loading="lazy" decoding="async" width="240" height="427" onclick="openLightbox(this.src)" />
+          <img src="prints/print-8.jpeg" alt="Resultado membro" class="print-img" loading="lazy" decoding="async" width="240" height="427" onclick="openLightbox(this.src)" />
         </div>
       </div>
     </div>
@@ -1985,9 +2042,14 @@
         Mini índice B3 · MetaTrader 5 · Genial Investimentos
       </p>
       <p class="footer-disclaimer">
-        Aviso de Risco: Operações no mercado financeiro envolvem risco de perda do capital investido. Resultados passados não garantem resultados futuros. O robô Apollo é uma ferramenta de automação e não constitui consultoria de investimentos. Invista somente o que você pode perder. Verifique se você se enquadra no perfil de investidor adequado antes de operar.
+        Aviso de Risco: Operações no mercado financeiro envolvem risco de perda do capital investido. Resultados passados não garantem resultados futuros. O robô Apollo é uma ferramenta de automação e não constitui consultoria ou recomendação de investimentos. Invista somente o que você pode perder. Verifique se você se enquadra no perfil de investidor adequado antes de operar.
       </p>
-      <p style="margin-top:24px; font-size:12px; color:var(--text-dim);">
+      <p style="margin-top:24px; font-size:13px;">
+        <a href="/politica-de-privacidade" style="color:var(--text-muted); margin:0 12px;">Política de Privacidade</a>
+        <span style="color:var(--text-dim);">·</span>
+        <a href="/termos-de-uso" style="color:var(--text-muted); margin:0 12px;">Termos de Uso</a>
+      </p>
+      <p style="margin-top:18px; font-size:12px; color:var(--text-dim);">
         © 2025 QuantsRobos. Todos os direitos reservados.
       </p>
     </div>
@@ -2006,52 +2068,20 @@
     <div class="modal-card">
       <button class="modal-close" onclick="closeModal()" aria-label="Fechar">&times;</button>
 
-      <div class="modal-step">Último passo</div>
-      <h3>Antes de entrar, precisamos te conhecer</h3>
-      <p class="modal-sub">Leva menos de 1 minuto. Essas informações ajudam a equipe a te dar o melhor suporte desde o primeiro dia.</p>
+      <div class="modal-step">Falta só isso</div>
+      <h3>Pronto pra entrar na comunidade</h3>
+      <p class="modal-sub">Leva 20 segundos. A equipe usa o WhatsApp pra te receber e tirar suas dúvidas no grupo.</p>
 
       <form id="qualForm" onsubmit="submitQual(event)" novalidate>
 
         <div class="form-group">
           <label for="q-nome">Seu nome</label>
-          <input id="q-nome" class="form-input" type="text" placeholder="João Silva" required />
+          <input id="q-nome" class="form-input" type="text" placeholder="João Silva" autocomplete="name" required />
         </div>
 
         <div class="form-group">
           <label for="q-tel">WhatsApp</label>
-          <input id="q-tel" class="form-input" type="tel" placeholder="(11) 99999-9999" required />
-        </div>
-
-        <div class="form-group">
-          <label>Você já opera na bolsa?</label>
-          <div class="radio-row">
-            <label class="radio-opt">
-              <input type="radio" name="opera" value="Sim, já opero" required />
-              <span class="radio-label">Sim, já opero</span>
-            </label>
-            <label class="radio-opt">
-              <input type="radio" name="opera" value="Não, sou iniciante" />
-              <span class="radio-label">Não, sou iniciante</span>
-            </label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Capital disponível para o robô</label>
-          <div class="radio-row-3">
-            <label class="radio-opt">
-              <input type="radio" name="capital" value="Até R$5k" required />
-              <span class="radio-label">Até R$5k</span>
-            </label>
-            <label class="radio-opt">
-              <input type="radio" name="capital" value="Até R$15k" />
-              <span class="radio-label">Até R$15k</span>
-            </label>
-            <label class="radio-opt">
-              <input type="radio" name="capital" value="Acima de R$15k" />
-              <span class="radio-label">Acima de R$15k</span>
-            </label>
-          </div>
+          <input id="q-tel" class="form-input" type="tel" placeholder="(11) 99999-9999" autocomplete="tel-national" inputmode="numeric" maxlength="15" required />
         </div>
 
         <button type="submit" class="btn-primary btn-lg modal-submit">
@@ -2073,11 +2103,12 @@
   </div>
 
   <script>
-    // Sticky CTA
+    // Sticky CTA — aparece mais cedo no mobile
     const stickyCta = document.getElementById('stickyCta');
+    const stickyThreshold = window.innerWidth < 768 ? 320 : 600;
     window.addEventListener('scroll', () => {
-      stickyCta.classList.toggle('visible', window.scrollY > 600);
-    });
+      stickyCta.classList.toggle('visible', window.scrollY > stickyThreshold);
+    }, { passive: true });
 
     // Scroll animations
     const observer = new IntersectionObserver((entries) => {
@@ -2132,43 +2163,50 @@
       if (e.target === qualModal) closeModal();
     });
 
+    // Máscara de WhatsApp: (XX) XXXXX-XXXX ou (XX) XXXX-XXXX
+    const telInput = document.getElementById('q-tel');
+    telInput.addEventListener('input', (e) => {
+      let v = e.target.value.replace(/\D/g, '').slice(0, 11);
+      if (v.length === 0)       e.target.value = '';
+      else if (v.length <= 2)   e.target.value = '(' + v;
+      else if (v.length <= 6)   e.target.value = '(' + v.slice(0, 2) + ') ' + v.slice(2);
+      else if (v.length <= 10)  e.target.value = '(' + v.slice(0, 2) + ') ' + v.slice(2, 6) + '-' + v.slice(6);
+      else                      e.target.value = '(' + v.slice(0, 2) + ') ' + v.slice(2, 7) + '-' + v.slice(7);
+      e.target.style.borderColor = '';
+    });
+
     function submitQual(e) {
       e.preventDefault();
-      const form = document.getElementById('qualForm');
+      const nomeEl = document.getElementById('q-nome');
+      const telEl  = document.getElementById('q-tel');
+      const nome   = nomeEl.value.trim();
+      const telRaw = telEl.value.replace(/\D/g, '');
 
-      const nome    = document.getElementById('q-nome').value.trim();
-      const tel     = document.getElementById('q-tel').value.trim();
-      const opera   = form.querySelector('input[name="opera"]:checked');
-      const capital = form.querySelector('input[name="capital"]:checked');
-
-      if (!nome || !tel || !opera || !capital) {
-        // Destaca campos vazios
-        if (!nome) document.getElementById('q-nome').style.borderColor = '#ff5050';
-        if (!tel)  document.getElementById('q-tel').style.borderColor  = '#ff5050';
-        if (!opera || !capital) {
-          form.querySelectorAll('.radio-label').forEach(l => {
-            const inp = l.previousElementSibling;
-            if (inp && inp.name === 'opera'   && !opera)   l.style.borderColor = '#ff5050';
-            if (inp && inp.name === 'capital' && !capital) l.style.borderColor = '#ff5050';
-          });
-        }
-        return;
+      // Validação
+      let invalid = false;
+      if (nome.length < 2)                 { nomeEl.style.borderColor = '#ff5050'; invalid = true; }
+      if (telRaw.length < 10 || telRaw.length > 11 || telRaw[0] === '0') {
+        telEl.style.borderColor = '#ff5050'; invalid = true;
       }
+      if (invalid) return;
 
-      // Registra o lead no Google Sheets
+      const submitBtn = document.querySelector('.modal-submit');
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.7';
+
+      // Eventos de conversão
+      try {
+        if (typeof fbq === 'function') fbq('track', 'Lead');
+        if (typeof gtag === 'function') gtag('event', 'generate_lead', { method: 'whatsapp_form' });
+      } catch (_) {}
+
+      // Registra no Google Sheets
       const WEBHOOK = 'https://script.google.com/macros/s/AKfycbzZbxHI6qQS4DzfrLgwP0mJG5UHS8sAr5FU03w9ewjh50HMWl0_SZxis3TDnQ6Iyrpt/exec';
-      const params = new URLSearchParams({
-        nome:     nome,
-        telefone: tel,
-        opera:    opera.value,
-        capital:  capital.value
-      });
+      const params = new URLSearchParams({ nome: nome, telefone: telEl.value });
       fetch(WEBHOOK + '?' + params.toString(), { method: 'GET', mode: 'no-cors' }).catch(() => {});
 
-      // Redireciona para o grupo
-      window.open('https://chat.whatsapp.com/IzO5KNxW0Eh4Nx60c2QT8u', '_blank');
-      closeModal();
-      form.reset();
+      // Redireciona pra página de obrigado
+      window.location.href = '/obrigado?n=' + encodeURIComponent(nome);
     }
   </script>
 
